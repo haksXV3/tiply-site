@@ -964,6 +964,28 @@ section.stats-section, section.howto-section{
   transform:translateY(0) scale(1);
   transition:opacity .6s, transform .6s cubic-bezier(.34,1.56,.64,1);
 }
+
+/* ═══ FORCE TRANSPARENCY — étoiles visibles partout ═══ */
+.stats-section,
+.stats-section *:not(.kpi-card):not(.kpi-num):not(.kpi-label):not(.kpi-src):not(.kpi-icon) {
+  background-color:transparent !important;
+}
+.stats-section {
+  background:transparent !important;
+  border-top:1px solid rgba(152,116,242,.1) !important;
+  border-bottom:none !important;
+}
+.faq-card {
+  background:transparent !important;
+}
+.faq-card.active {
+  background:rgba(152,116,242,.08) !important;
+  border-color:rgba(152,116,242,.6) !important;
+}
+/* Sections génériques sans fond */
+.wrap.sec:not(.hero) {
+  background:transparent !important;
+}
 </style>
 <!-- Matomo -->
 <script>
