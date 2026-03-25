@@ -976,6 +976,20 @@ section.stats-section, section.howto-section{
   transition:opacity .6s, transform .6s cubic-bezier(.34,1.56,.64,1);
 }
 </style>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.litesoft.fr/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '8']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 </head>
 <body>
 <div class="blobs"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div></div>
@@ -1389,7 +1403,7 @@ section.stats-section, section.howto-section{
         <li class="dim"><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="2" y1="5" x2="8" y2="5"/></svg></span>Dashboard multi-établissements</li>
         <li class="dim"><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="2" y1="5" x2="8" y2="5"/></svg></span>Personnalisation visuelle complète</li>
       </ul>
-      <a href="#contact" class="cbtn">Démarrer gratuitement</a>
+      <a href="#contact" class="cbtn" onclick="prefillContact('Essentielle — Gratuit')">Démarrer gratuitement</a>
     </div>
     <div class="card cstd rev d1">
       <div class="cglow"></div>
@@ -1412,7 +1426,7 @@ section.stats-section, section.howto-section{
         <li><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1.5,5 3.8,7.5 8.5,2.5"/></svg></span>Animation personnalisée / serveur</li>
         <li><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1.5,5 3.8,7.5 8.5,2.5"/></svg></span>Affichage marketing dynamique</li>
       </ul>
-      <a href="#contact" class="cbtn">Je veux cette offre</a>
+      <a href="#contact" class="cbtn" onclick="prefillContact('Standard — 29 €/mois')">Je veux cette offre</a>
     </div>
     <div class="card cprem rev d2">
       <div class="ctier">Premium</div>
@@ -1435,7 +1449,7 @@ section.stats-section, section.howto-section{
         <li><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1.5,5 3.8,7.5 8.5,2.5"/></svg></span>Domotique &amp; animations LED <span class="soon">Soon</span></li>
         <li><span class="fi"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1.5,5 3.8,7.5 8.5,2.5"/></svg></span>Wall of Fame &amp; gamification <span class="soon">Soon</span></li>
       </ul>
-      <a href="#contact" class="cbtn">Nous contacter</a>
+      <a href="#contact" class="cbtn" onclick="prefillContact('Premium — 49 €/mois')">Nous contacter</a>
     </div>
   </div>
 </div>
@@ -1596,7 +1610,7 @@ section.stats-section, section.howto-section{
             <option>Autre commerce de service</option>
             <option>Groupe / Franchise multi-sites</option>
           </select></div>
-        <div class="cf full"><label>Votre message *</label><textarea name="msg" placeholder="Décrivez votre projet ou posez vos questions…" required></textarea></div>
+        <div class="cf full"><label>Votre message *</label><textarea id="cmsg" name="msg" placeholder="Décrivez votre projet ou posez vos questions…" required></textarea></div>
       </div>
       <div class="cfoot">
         <button type="submit" class="csend">Envoyer →</button>
@@ -1676,25 +1690,32 @@ function sim(){
 }
 tr.addEventListener('input',sim);cr.addEventListener('input',sim);sim();
 
-/* FAQ new */
-document.querySelectorAll('.faq-q').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var item = btn.closest('.faq-item');
-    var ans  = item.querySelector('.faq-a');
-    var open = btn.getAttribute('aria-expanded') === 'true';
-    // Close all others
-    document.querySelectorAll('.faq-q').forEach(function(b){
-      b.setAttribute('aria-expanded','false');
-      b.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
-      b.closest('.faq-item').style.borderColor = '';
+/* FAQ new — fixed */
+(function(){
+  var faqBtns = document.querySelectorAll('.faq-q');
+  faqBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var ans  = item.querySelector('.faq-a');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Fermer TOUS d'abord
+      faqBtns.forEach(function(b){
+        b.setAttribute('aria-expanded', 'false');
+        var a = b.closest('.faq-item').querySelector('.faq-a');
+        if(a) a.classList.remove('open');
+        b.closest('.faq-item').style.borderColor = '';
+      });
+
+      // Ouvrir seulement si était fermé
+      if(!isOpen){
+        btn.setAttribute('aria-expanded', 'true');
+        ans.classList.add('open');
+        item.style.borderColor = 'rgba(152,116,242,.5)';
+      }
     });
-    if(!open){
-      btn.setAttribute('aria-expanded','true');
-      ans.classList.add('open');
-      item.style.borderColor = 'rgba(152,116,242,.5)';
-    }
   });
-});
+})();
 
 /* SCROLL REVEAL */
 const io=new IntersectionObserver(entries=>{
@@ -2270,6 +2291,53 @@ document.getElementById('burger').addEventListener('click', function(){
   });
 })();
 
+
+/* Pricing → contact prefill */
+function prefillContact(offreName){
+  setTimeout(function(){
+    var msg = document.getElementById('cmsg');
+    if(msg && !msg.value){
+      msg.value = "Bonjour, je suis intéressé par l'offre " + offreName + ". Pouvez-vous me contacter ?";
+    }
+  }, 300);
+}
+
+/* KPI mirror effect */
+(function(){
+  var kpiCards = document.querySelectorAll('.kpi-card');
+  if(kpiCards.length < 3) return;
+  // Card 0 (left): mirror X axis
+  kpiCards[0].classList.add('kpi-mirror-l');
+  // Card 2 (right): mirror X axis  
+  kpiCards[2].classList.add('kpi-mirror-r');
+  
+  kpiCards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      var xRaw = (e.clientX - rect.left) / rect.width * 100;
+      var yRaw = (e.clientY - rect.top)  / rect.height * 100;
+      
+      // Mirror X for left and right cards
+      var x = xRaw;
+      if(card.classList.contains('kpi-mirror-l')) x = 100 - xRaw;
+      if(card.classList.contains('kpi-mirror-r')) x = 100 - xRaw;
+      
+      card.style.setProperty('--mx', x.toFixed(1) + '%');
+      card.style.setProperty('--my', yRaw.toFixed(1) + '%');
+
+      // Tilt
+      var cx = rect.left + rect.width/2;
+      var cy = rect.top + rect.height/2;
+      var dx = (e.clientX - cx) / rect.width * 2;
+      var dy = (e.clientY - cy) / rect.height * 2;
+      card.style.transform =
+        'translateY(-8px) perspective(600px) rotateY('+(dx*4)+'deg) rotateX('+(-dy*4)+'deg) scale(1.01)';
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.transform = '';
+    });
+  });
+})();
 </script>
 
 </body>
