@@ -381,94 +381,83 @@ tr:last-child td{border-bottom:none}
 
 /* faq */
 .faqwrap{max-width:660px;margin:0 auto}
-/* ═══ FAQ redesign ═══ */
-.faq-grid{
+/* ═══ FAQ — nouveau design tabs ═══ */
+.faq-wrap{
+  max-width:860px;
+  margin:0 auto;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
-  max-width:900px;
-  margin:0 auto;
+  gap:12px;
+  align-items:start;
 }
-.faq-item{
-  background:rgba(10,6,26,.97);
-  border:1.5px solid rgba(152,116,242,.14);
-  border-radius:20px;
-  padding:0;
+.faq-card{
+  background:rgba(10,6,26,.95);
+  border:1.5px solid rgba(152,116,242,.15);
+  border-radius:18px;
+  padding:22px 24px;
+  cursor:pointer;
   position:relative;
   z-index:3;
-  overflow:hidden;
-  transition:border-color .3s, box-shadow .3s;
-}
-.faq-item:hover{
-  border-color:rgba(152,116,242,.4);
-  box-shadow:0 8px 32px rgba(152,116,242,.12);
-}
-.faq-item::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1.5px;
-  background:linear-gradient(to right,transparent,rgba(152,116,242,.3),transparent);
-  opacity:0;
-  transition:opacity .3s;
-}
-.faq-item:hover::before{opacity:1}
-
-.faq-num{
-  position:absolute;
-  top:16px;right:16px;
-  font-size:10px;font-weight:800;
-  letter-spacing:.18em;
-  color:rgba(152,116,242,.3);
-  text-transform:uppercase;
-}
-.faq-body{padding:0}
-.faq-q{
-  width:100%;
-  background:none;
-  border:none;
-  padding:22px 52px 22px 22px;
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  cursor:pointer;
-  text-align:left;
-  color:#fff;
-  font-size:14px;
-  font-weight:600;
-  font-family:inherit;
-  line-height:1.4;
+  transition:border-color .25s, box-shadow .25s, background .25s;
   user-select:none;
 }
-.faq-q-icon{
-  width:28px;height:28px;flex-shrink:0;margin-top:1px;
-  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+.faq-card:hover{
+  border-color:rgba(152,116,242,.4);
+  box-shadow:0 6px 28px rgba(152,116,242,.12);
 }
-.faq-q-icon svg{width:100%;height:100%}
-.faq-q[aria-expanded="true"] .faq-q-icon{
-  transform:rotate(45deg);
+.faq-card.active{
+  border-color:rgba(152,116,242,.7);
+  background:rgba(22,12,48,.97);
+  box-shadow:0 8px 36px rgba(152,116,242,.22);
 }
-.faq-a{
-  max-height:0;
+.faq-card-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.faq-card-num{
+  width:28px;height:28px;
+  border-radius:8px;
+  background:rgba(152,116,242,.12);
+  border:1px solid rgba(152,116,242,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:rgba(152,116,242,.7);
+  flex-shrink:0;
+  transition:background .25s, border-color .25s;
+}
+.faq-card.active .faq-card-num{
+  background:rgba(152,116,242,.3);
+  border-color:rgba(152,116,242,.7);
+  color:#fff;
+}
+.faq-card-q{
+  font-size:14px;font-weight:600;color:#fff;
+  line-height:1.35;flex:1;
+}
+.faq-card-arrow{
+  width:20px;height:20px;flex-shrink:0;
+  color:rgba(152,116,242,.45);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), color .25s;
+}
+.faq-card.active .faq-card-arrow{
+  transform:rotate(90deg);
+  color:rgba(152,116,242,.9);
+}
+.faq-card-a{
   overflow:hidden;
-  transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
+  max-height:0;
+  transition:max-height .35s ease, padding .25s;
   font-size:13px;
-  color:rgba(255,255,255,.82);
+  color:rgba(255,255,255,.75);
   line-height:1.65;
-  padding:0 22px;
+  padding:0 0 0 42px;
 }
-.faq-a.open{
+.faq-card.active .faq-card-a{
   max-height:200px;
-  padding:0 22px 20px 64px;
-  color:rgba(255,255,255,.82);
+  padding:14px 0 4px 42px;
 }
-
-/* Keep old classes for compat */
-.faqwrap{}
-.fi2,.fq,.ficon,.fa{}
-
 @media(max-width:720px){
-  .faq-grid{grid-template-columns:1fr}
+  .faq-wrap{grid-template-columns:1fr}
 }
 
 .ficon{width:26px;height:26px;border-radius:50%;background:rgba(152,116,242,.14);border:1.5px solid rgba(152,116,242,.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--pl);font-size:17px;transition:all .3s}
@@ -1518,76 +1507,55 @@ section.stats-section, section.howto-section{
     <div class="eye">FAQ</div>
     <h2>Vos questions,<br><span class="grad">nos réponses</span></h2>
   </div>
-  <div class="faq-grid">
+  <div class="faq-wrap">
 
-    <div class="faq-item rev">
-      <div class="faq-num">01</div>
-      <div class="faq-body">
-        <button class="faq-q" aria-expanded="false">
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="4" stroke="rgba(152,116,242,.8)" stroke-width="1.5"/><path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </span>
-          <span>Dois-je acheter un iPhone ?</span>
-        </button>
-        <div class="faq-a">Non. Avec l'offre Essentielle, vous utilisez votre propre smartphone. Avec Standard et Premium, un iPhone vous est loué — aucune immobilisation financière.</div>
+    <div class="faq-card rev" data-faq="0">
+      <div class="faq-card-header">
+        <div class="faq-card-num">01</div>
+        <div class="faq-card-q">Dois-je acheter un iPhone ?</div>
+        <svg class="faq-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+      <div class="faq-card-a">Non. Avec l'offre Essentielle, vous utilisez votre propre smartphone. Avec Standard et Premium, un iPhone vous est loué — aucune immobilisation financière.</div>
     </div>
 
-    <div class="faq-item rev d1">
-      <div class="faq-num">02</div>
-      <div class="faq-body">
-        <button class="faq-q" aria-expanded="false">
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="4" stroke="rgba(152,116,242,.8)" stroke-width="1.5"/><path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </span>
-          <span>Comment les pourboires sont reversés ?</span>
-        </button>
-        <div class="faq-a">Les paiements transitent par Stripe (certifié PCI DSS). Tiply reverse automatiquement les montants. La répartition est configurable depuis le back-office.</div>
+    <div class="faq-card rev d1" data-faq="1">
+      <div class="faq-card-header">
+        <div class="faq-card-num">02</div>
+        <div class="faq-card-q">Comment les pourboires sont reversés ?</div>
+        <svg class="faq-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+      <div class="faq-card-a">Les paiements transitent par Stripe (certifié PCI DSS). Tiply reverse automatiquement les montants. La répartition est configurable depuis le back-office.</div>
     </div>
 
-    <div class="faq-item rev d1">
-      <div class="faq-num">03</div>
-      <div class="faq-body">
-        <button class="faq-q" aria-expanded="false">
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="4" stroke="rgba(152,116,242,.8)" stroke-width="1.5"/><path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </span>
-          <span>Quelle est la durée d'engagement ?</span>
-        </button>
-        <div class="faq-a">Aucun engagement minimum. Annulez à tout moment. L'offre Standard inclut 30 jours offerts. En facturation annuelle, vous économisez 15&nbsp;%.</div>
+    <div class="faq-card rev d1" data-faq="2">
+      <div class="faq-card-header">
+        <div class="faq-card-num">03</div>
+        <div class="faq-card-q">Quelle est la durée d'engagement ?</div>
+        <svg class="faq-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+      <div class="faq-card-a">Aucun engagement minimum. Annulez à tout moment. L'offre Standard inclut 30 jours offerts. En facturation annuelle, vous économisez 15&nbsp;%.</div>
     </div>
 
-    <div class="faq-item rev d2">
-      <div class="faq-num">04</div>
-      <div class="faq-body">
-        <button class="faq-q" aria-expanded="false">
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="4" stroke="rgba(152,116,242,.8)" stroke-width="1.5"/><path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </span>
-          <span>Tiply fonctionne dans mon secteur ?</span>
-        </button>
-        <div class="faq-a">Oui. Restaurants, bars, coffee shops, coiffeurs, boulangeries, fleuristes… Si vos clients vous remercient, Tiply capture ce remerciement en digital.</div>
+    <div class="faq-card rev d2" data-faq="3">
+      <div class="faq-card-header">
+        <div class="faq-card-num">04</div>
+        <div class="faq-card-q">Tiply fonctionne dans mon secteur ?</div>
+        <svg class="faq-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+      <div class="faq-card-a">Oui. Restaurants, bars, coffee shops, coiffeurs, boulangeries, fleuristes… Si vos clients vous remercient, Tiply capture ce remerciement en digital.</div>
     </div>
 
-    <div class="faq-item rev d2">
-      <div class="faq-num">05</div>
-      <div class="faq-body">
-        <button class="faq-q" aria-expanded="false">
-          <span class="faq-q-icon">
-            <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="4" stroke="rgba(152,116,242,.8)" stroke-width="1.5"/><path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </span>
-          <span>Est-ce compliqué à installer ?</span>
-        </button>
-        <div class="faq-a">Non. Moins de 5 minutes. Téléchargez l'app, créez vos profils, posez l'iPhone sur le comptoir. Notre équipe vous accompagne lors de l'onboarding.</div>
+    <div class="faq-card rev d2" data-faq="4">
+      <div class="faq-card-header">
+        <div class="faq-card-num">05</div>
+        <div class="faq-card-q">Est-ce compliqué à installer ?</div>
+        <svg class="faq-card-arrow" viewBox="0 0 20 20" fill="none"><path d="M7 10l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+      <div class="faq-card-a">Non. Moins de 5 minutes. Téléchargez l'app, créez vos profils, posez l'iPhone sur le comptoir. Notre équipe vous accompagne lors de l'onboarding.</div>
     </div>
 
   </div>
 </div>
-
 
 <!-- CONTACT -->
 <div class="wrap sec" id="contact">
@@ -1690,46 +1658,20 @@ function sim(){
 }
 tr.addEventListener('input',sim);cr.addEventListener('input',sim);sim();
 
-/* FAQ — v3 event delegation */
-(function(){
-  // Ferme tout
-  function closeAll(){
-    document.querySelectorAll('.faq-q').forEach(function(b){
-      b.setAttribute('aria-expanded','false');
+/* FAQ — v4 simple toggle */
+document.querySelectorAll('.faq-card').forEach(function(card){
+  card.addEventListener('click', function(){
+    var isActive = card.classList.contains('active');
+    // Ferme tout
+    document.querySelectorAll('.faq-card').forEach(function(c){
+      c.classList.remove('active');
     });
-    document.querySelectorAll('.faq-a').forEach(function(a){
-      a.style.maxHeight = '0';
-      a.style.padding = '0 22px';
-      a.classList.remove('open');
-    });
-    document.querySelectorAll('.faq-item').forEach(function(i){
-      i.style.borderColor = '';
-    });
-  }
-
-  // Event delegation sur le conteneur parent
-  var grid = document.querySelector('.faq-grid');
-  if(!grid) return;
-
-  grid.addEventListener('click', function(e){
-    var btn = e.target.closest('.faq-q');
-    if(!btn) return;
-
-    var item = btn.closest('.faq-item');
-    var ans  = item.querySelector('.faq-a');
-    var isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-    closeAll();
-
-    if(!isOpen){
-      btn.setAttribute('aria-expanded','true');
-      ans.classList.add('open');
-      ans.style.maxHeight = '300px';
-      ans.style.padding = '0 22px 20px 64px';
-      item.style.borderColor = 'rgba(152,116,242,.5)';
+    // Ouvre si était fermé
+    if(!isActive){
+      card.classList.add('active');
     }
   });
-})();
+});
 
 /* SCROLL REVEAL */
 const io=new IntersectionObserver(entries=>{
