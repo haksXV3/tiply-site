@@ -257,7 +257,7 @@ nav a:hover{color:#fff}
 .bc:hover .bimg img{transform:scale(1.1) rotate(-3deg)}
 .bt{font-size:13px;font-weight:700;margin-bottom:7px;
   display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
-.bd{color:rgba(255,255,255,.75);font-size:12px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.6}
+.bd{color:rgba(255,255,255,.88);font-size:12px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.6}
 
 /* mascot banner */
 .mb-inner{background:linear-gradient(135deg,rgba(152,116,242,.13),rgba(152,116,242,.04));
@@ -365,7 +365,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .srl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:7px}
 .sra{font-size:28px;font-weight:800;letter-spacing:-.03em;margin-bottom:3px}
 .sr.hi .sra{color:var(--pl)}
-.srn{font-size:11px;color:rgba(255,255,255,.22);font-weight:300}
+.srn{font-size:11px;color:rgba(255,255,255,.65);font-weight:300}
 
 /* comparison */
 table{width:100%;border-collapse:separate;border-spacing:0;border-radius:18px;overflow:hidden;background:rgba(10,6,26,.97);border:1.5px solid rgba(152,116,242,.18)}
@@ -453,13 +453,14 @@ tr:last-child td{border-bottom:none}
   overflow:hidden;
   transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
   font-size:13px;
-  color:rgba(255,255,255,.6);
+  color:rgba(255,255,255,.82);
   line-height:1.65;
   padding:0 22px;
 }
 .faq-a.open{
   max-height:200px;
   padding:0 22px 20px 64px;
+  color:rgba(255,255,255,.82);
 }
 
 /* Keep old classes for compat */
@@ -481,7 +482,7 @@ tr:last-child td{border-bottom:none}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .cf{display:flex;flex-direction:column;gap:7px}
 .cf.full{grid-column:1/-1}
-.cf label{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.33)}
+.cf label{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.85)}
 .cf input,.cf textarea,.cf select{background:rgba(255,255,255,.06);border:1.5px solid rgba(152,116,242,.2);border-radius:12px;padding:12px 16px;font-size:14px;color:#fff;font-family:'Poppins',sans-serif;outline:none;width:100%;transition:border-color .25s,box-shadow .25s}
 .cf input::placeholder,.cf textarea::placeholder{color:rgba(255,255,255,.22)}
 .cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(152,116,242,.18)}
@@ -667,18 +668,18 @@ footer p{font-size:12px;color:rgba(255,255,255,.18);font-weight:300}
 .kpi-dark:hover{border-color:rgba(152,116,242,.4);box-shadow:0 20px 52px rgba(152,116,242,.15)}
 .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
   background:linear-gradient(to right,transparent,rgba(255,255,255,.25),transparent)}
-.kpi-icon{width:42px;height:42px;flex-shrink:0}
+.kpi-icon{width:42px;height:42px;flex-shrink:0;opacity:.9}
 .kpi-num{font-size:clamp(40px,5.5vw,62px);font-weight:900;line-height:1;letter-spacing:-.04em;margin-top:4px}
 .kpi-accent .kpi-num{color:#fff}
 .kpi-dark .kpi-num{color:var(--pl)}
 .kpi-unit{font-size:.5em;font-weight:700;vertical-align:super;margin-left:2px;opacity:.8}
 .kpi-label{font-size:13px;font-weight:400;line-height:1.5;flex:1}
 .kpi-accent .kpi-label{color:rgba(255,255,255,.82)}
-.kpi-dark .kpi-label{color:rgba(255,255,255,.55)}
+.kpi-dark .kpi-label{color:rgba(255,255,255,.82)}
 .kpi-src{font-size:10px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);margin-top:auto}
 .kpi-accent .kpi-src{color:rgba(255,255,255,.75)}
-.kpi-dark .kpi-src{color:rgba(255,255,255,.22)}
-.kpi-src a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.kpi-dark .kpi-src{color:rgba(255,255,255,.55)}
+.kpi-src a{color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:3px}
 .kpi-src a:hover{color:var(--lav)}
 
 @media(max-width:980px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
@@ -794,14 +795,14 @@ footer p{font-size:12px;color:rgba(255,255,255,.18);font-weight:300}
 .howto-step-inner:hover{border-color:rgba(152,116,242,.4);
   box-shadow:0 12px 40px rgba(152,116,242,.15)}
 .howto-num{font-size:10px;font-weight:800;letter-spacing:.2em;color:var(--pl);
-  opacity:.45;margin-top:2px;flex-shrink:0;width:24px;text-align:center;
+  opacity:.7;margin-top:2px;flex-shrink:0;width:24px;text-align:center;
   text-transform:uppercase}
 .howto-icon{width:52px;height:52px;flex-shrink:0;
   background:rgba(152,116,242,.1);border-radius:14px;
   display:flex;align-items:center;justify-content:center;padding:10px}
 .howto-icon svg{width:100%;height:100%}
 .howto-text h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3}
-.howto-text p{font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.6;margin:0}
+.howto-text p{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.6;margin:0}
 .howto-connector{width:2px;height:20px;background:linear-gradient(to bottom,rgba(152,116,242,.25),rgba(152,116,242,.08));
   margin:0 0 0 52px;flex-shrink:0}
 
@@ -832,7 +833,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.18);font-weight:300}
 
 /* Simulator offer selector */
 .sim-offer-row{margin-bottom:20px}
-.sim-offer-row label{font-size:12px;color:rgba(255,255,255,.5);font-weight:600;
+.sim-offer-row label{font-size:12px;color:rgba(255,255,255,.85);font-weight:600;
   letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:10px}
 .sim-offer-btns{display:flex;gap:8px;flex-wrap:wrap}
 .sob{background:rgba(255,255,255,.05);border:1.5px solid rgba(152,116,242,.2);
@@ -1398,7 +1399,7 @@ section.stats-section, section.howto-section{
       <div class="pblock">
         <div class="prow"><span class="pcurr">€</span><span class="pnum" id="pn1">29</span></div>
         <div class="pper">/mois</div>
-        <div class="psub" id="pf1">+ location iPhone ~20–25&nbsp;€/mois</div>
+        <div class="psub" id="pf1">+ location iPhone ~20–25 €/mois</div>
         <div class="pannual" id="pa1"></div>
       </div>
       <div class="comm"><svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/></svg> 8&nbsp;% de commission · −2&nbsp;% vs Essentielle</div>
@@ -1420,7 +1421,7 @@ section.stats-section, section.howto-section{
       <div class="pblock">
         <div class="prow"><span class="pcurr">€</span><span class="pnum" id="pn2">49</span></div>
         <div class="pper">/mois</div>
-        <div class="psub" id="pf2">+ location iPhone ~20–25&nbsp;€/mois</div>
+        <div class="psub" id="pf2">+ location iPhone ~20–25 €/mois</div>
         <div class="pannual" id="pa2"></div>
       </div>
       <div class="comm"><svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/></svg> 8&nbsp;% de commission · Gestion centralisée</div>
@@ -1630,13 +1631,13 @@ const BASE={std:29,prem:49};const D=0.85;let ann=false;
 function upd(){
   const aS=Math.round(BASE.std*D),yS=Math.round(aS*12),sS=Math.round(BASE.std*12-yS);
   document.getElementById('pn1').textContent=ann?aS:BASE.std;
-  document.getElementById('pf1').textContent=ann?'facturé annuellement · + location iPhone ~20–25&nbsp;€/mois':'+ location iPhone ~20–25&nbsp;€/mois';
+  document.getElementById('pf1').textContent=ann?'facturé annuellement · + location iPhone ~20–25 €/mois':'+ location iPhone ~20–25 €/mois';
   const pa1=document.getElementById('pa1');
   if(ann){pa1.textContent='soit '+yS+'€/an — économie '+sS+'€';pa1.classList.add('show')}
   else{pa1.textContent='';pa1.classList.remove('show')}
   const aP=Math.round(BASE.prem*D),yP=Math.round(aP*12),sP=Math.round(BASE.prem*12-yP);
   document.getElementById('pn2').textContent=ann?aP:BASE.prem;
-  document.getElementById('pf2').textContent=ann?'facturé annuellement · + location iPhone ~20–25&nbsp;€/mois':'+ location iPhone ~20–25&nbsp;€/mois';
+  document.getElementById('pf2').textContent=ann?'facturé annuellement · + location iPhone ~20–25 €/mois':'+ location iPhone ~20–25 €/mois';
   const pa2=document.getElementById('pa2');
   if(ann){pa2.textContent='soit '+yP+'€/an — économie '+sP+'€';pa2.classList.add('show')}
   else{pa2.textContent='';pa2.classList.remove('show')}
