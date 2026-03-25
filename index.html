@@ -1690,30 +1690,44 @@ function sim(){
 }
 tr.addEventListener('input',sim);cr.addEventListener('input',sim);sim();
 
-/* FAQ new — fixed */
+/* FAQ — v3 event delegation */
 (function(){
-  var faqBtns = document.querySelectorAll('.faq-q');
-  faqBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var item = btn.closest('.faq-item');
-      var ans  = item.querySelector('.faq-a');
-      var isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-      // Fermer TOUS d'abord
-      faqBtns.forEach(function(b){
-        b.setAttribute('aria-expanded', 'false');
-        var a = b.closest('.faq-item').querySelector('.faq-a');
-        if(a) a.classList.remove('open');
-        b.closest('.faq-item').style.borderColor = '';
-      });
-
-      // Ouvrir seulement si était fermé
-      if(!isOpen){
-        btn.setAttribute('aria-expanded', 'true');
-        ans.classList.add('open');
-        item.style.borderColor = 'rgba(152,116,242,.5)';
-      }
+  // Ferme tout
+  function closeAll(){
+    document.querySelectorAll('.faq-q').forEach(function(b){
+      b.setAttribute('aria-expanded','false');
     });
+    document.querySelectorAll('.faq-a').forEach(function(a){
+      a.style.maxHeight = '0';
+      a.style.padding = '0 22px';
+      a.classList.remove('open');
+    });
+    document.querySelectorAll('.faq-item').forEach(function(i){
+      i.style.borderColor = '';
+    });
+  }
+
+  // Event delegation sur le conteneur parent
+  var grid = document.querySelector('.faq-grid');
+  if(!grid) return;
+
+  grid.addEventListener('click', function(e){
+    var btn = e.target.closest('.faq-q');
+    if(!btn) return;
+
+    var item = btn.closest('.faq-item');
+    var ans  = item.querySelector('.faq-a');
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    closeAll();
+
+    if(!isOpen){
+      btn.setAttribute('aria-expanded','true');
+      ans.classList.add('open');
+      ans.style.maxHeight = '300px';
+      ans.style.padding = '0 22px 20px 64px';
+      item.style.borderColor = 'rgba(152,116,242,.5)';
+    }
   });
 })();
 
